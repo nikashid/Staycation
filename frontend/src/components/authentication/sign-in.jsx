@@ -9,7 +9,7 @@ export default function SignIn(props) {
     const navigate = useNavigate();
     const { control, handleSubmit } = useForm();
     const onSubmit = data => {
-        axios.post("http://localhost:3000/user/signin", { data: data }).then(res => {
+        axios.post("http://localhost:3000/user/signin", { data: data }, { withCredentials: true }).then(res => {
             navigate("/")
         }).catch(err => {
             console.log("error", err);

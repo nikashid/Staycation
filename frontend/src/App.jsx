@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 export function App() {
   return <div className="App">
-    <AppHeader appLogo={logo} appName="DNBStays" />
+    <AppHeader appLogo={logo} appName="Staycation" />
     <Outlet />
   </div>
 }

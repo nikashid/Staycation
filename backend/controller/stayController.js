@@ -68,3 +68,7 @@ exports.getStays = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getDetails = async (req, res, next) {
+  
+}

@@ -220,9 +220,9 @@ const stay = new mongoose.Schema({
 });
 
 const stayModel = mongoose.model(
-  "listingsAndReviews",
+  "staysAndReviews",
   stay,
-  "listingsAndReviews"
+  "staysAndReviews"
 );
 
 module.exports = stayModel;

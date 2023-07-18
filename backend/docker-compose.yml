@@ -1,0 +1,18 @@
+version: "2"
+services:
+  web:
+   build: .
+   volumes:
+      - /usr/src/app/node_modules
+   ports:
+   - "3000:3000"
+   depends_on:
+   - mongo
+  mongo:
+   image: mongo
+   environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+   container_name: StaycationDB
+   ports:
+   - "27017:27017"
