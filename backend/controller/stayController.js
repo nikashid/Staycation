@@ -2,9 +2,9 @@ const stayModel = require("../model/stayModel");
 
 /**
  * add new stay to collection
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 exports.addStays = async (req, res, next) => {
   try {
@@ -18,9 +18,9 @@ exports.addStays = async (req, res, next) => {
 
 /**
  * get stays as per location
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 exports.getStays = async (req, res, next) => {
   try {
@@ -38,24 +38,25 @@ exports.getStays = async (req, res, next) => {
           propertyType: "$property_type",
           cancellationPolicy: "$cancellation_policy",
           avaibility: "$availability",
-          price: { $getField:
-                  { field: { $literal: "$numberDecimal" },
-                    input: "$price"
-                  }
-               },
+          price: {
+            $getField: {
+              field: { $literal: "$numberDecimal" },
+              input: "$price",
+            },
+          },
           accomodates: "$accommodates",
           image: "$images.picture_url",
-          ratings: "$review_scores.review_scores_rating"
+          ratings: "$review_scores.review_scores_rating",
         },
       },
-      { 
-        $match: { "countryCode": countryCode },
+      {
+        $match: { countryCode: countryCode },
       },
       {
-        $sort: { ratings: -1 }
+        $sort: { ratings: -1 },
       },
       {
-        $skip: ((pageNumber - 1) * recordCount),
+        $skip: (pageNumber - 1) * recordCount,
       },
       {
         $limit: parseInt(recordCount),
@@ -64,11 +65,9 @@ exports.getStays = async (req, res, next) => {
     const stayCollection = await stayModel.aggregate(aggregate);
     res.status(200).json(stayCollection);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     next(err);
   }
 };
 
-exports.getDetails = async (req, res, next) {
-  
-}
+exports.getDetails = async (req, res, next) => {};
