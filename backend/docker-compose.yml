@@ -1,6 +1,7 @@
-version: "2"
+version: "3.8"
 services:
   web:
+   image: nk18989/staycation-backend
    build: .
    volumes:
       - /usr/src/app/node_modules
@@ -8,11 +9,14 @@ services:
    - "3000:3000"
    depends_on:
    - mongo
+   container_name: StaycationBackend
   mongo:
    image: mongo
-   environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+   # environment:
+   #    MONGO_INITDB_ROOT_USERNAME: root
+   #    MONGO_INITDB_ROOT_PASSWORD: example
    container_name: StaycationDB
+   volumes: 
+      - ./mongo-data:/data/db
    ports:
    - "27017:27017"
