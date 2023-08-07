@@ -44,6 +44,8 @@ exports.signin = async (req, res, next) => {
       if (!isPasswordValid) {
         res.status(401).json("Unauthorized. Wrong email and password");
       } else {
+        console.log("db doc", dbDoc);
+        data.role = dbDoc.role;
         const authToken = await jwt.sign(data, process.env.SECRETKEY);
         res.cookie("token", authToken, { httpOnly: false });
         res.status(200).json({ user: data.email });

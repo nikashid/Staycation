@@ -11,7 +11,7 @@ const nonsrv = `mongodb://${username}:${password}@cluster0-shard-00-00.kufzz.mon
 const local = `mongodb://127.0.0.1:27017/Staycation`;
 const dockerUrl = `mongodb://StaycationDB:27017/Staycation`;
 mongoose
-  .connect(dockerUrl)
+  .connect(url)
   .then((res) => console.log("mongo connection successful"))
   .catch((err) => console.log(err));
 

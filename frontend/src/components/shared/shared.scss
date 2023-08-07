@@ -1,0 +1,16 @@
+.appHeader,
+.appFooter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: #fff;
+    opacity: 0.8;
+    height: 50px;
+    z-index: 1;
+}
+
+.appHeader {
+    position: fixed;
+    top: 0;
+}

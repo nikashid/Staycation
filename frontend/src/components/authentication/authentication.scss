@@ -1,0 +1,31 @@
+@use "../../App";
+.authForm {
+    display: flex;
+    justify-content: center;
+    fieldset {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 25vw;
+        background-color: #f0eeee;
+        padding-top: 30px;
+        legend {
+            font-size: 2rem;
+        }
+        div {
+            display: flex;
+            justify-content: space-between;
+            label, input {
+                margin: 0.5rem 1rem;
+            }
+        }
+        input[type="submit"] {
+            align-self: center;
+            margin-top: 20px;
+        }
+        a {
+            margin-top: 20px;
+        }
+    }
+}

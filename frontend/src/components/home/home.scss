@@ -1,0 +1,42 @@
+.hotelList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 60px;
+    .colHotelList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .searchbox {
+        width: 30%;
+    }
+    .card {
+        margin: 1rem;
+        .cardBody {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .cardImg {
+            height: 250px;
+        }
+    }
+
+    .loadMoreBtn {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 20%;
+        Button {
+            background-color: #f3f3f3;
+            color: #343434;
+            border-color: #ccc;
+            &:hover {
+                background-color: #343434;
+                color: #f3f3f3;
+            }
+        }
+    }
+}

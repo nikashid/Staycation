@@ -1,45 +1,75 @@
-import { Link } from "react-router-dom";
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Input, Space, Card, Button } from 'antd';
-import { useForm, Controller } from "react-hook-form";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./authentication.scss";
 
 export default function SignIn(props) {
-    const navigate = useNavigate();
-    const { control, handleSubmit } = useForm();
-    const onSubmit = data => {
-        axios.post("http://localhost:3000/user/signin", { data: data }, { withCredentials: true }).then(res => {
-            navigate("/")
-        }).catch(err => {
-            console.log("error", err);
-        })
-    };
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    return (
-        <div className="LoginSpace">
-            <Space direction="vertical" size={16}>
-                <Card style={{ width: 300 }}>
-                    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
-                    <div className="cardHeader">
-                        <h5 className="card-title">Sign In</h5>
-                    </div>
-                    <div className="card-body">
-                        <form className='loginForm'>
-                            <Controller name="email"
-                                control={control}
-                                rules={{ required: true }}
-                                render={({ field }) => <Input placeholder="Enter User Name.." {...field} />} />
-                            <Controller name="password"
-                                control={control}
-                                rules={{ required: true }}
-                                render={({ field }) => <Input type="password" placeholder="Enter password" {...field} />} />
-                            <Button type="primary" onClick={handleSubmit(onSubmit)}>Submit</Button>
-                            <Link to="/register"><span>register</span></Link>
-                        </form>
-                    </div>
-                </Card>
-            </Space>
-        </div>
-    )
+  /**
+   * Handle Sign in event
+   * @param {*} event
+   */
+  const signIn = (event) => {
+    const data = {
+      email: email,
+      password: password,
+    };
+    console.log(data);
+    event.preventDefault();
+    axios
+      .post(
+        `${process.env.REACT_APP_LOCAL_API_DOMAIN}/user/signin`,
+        { data: data },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        navigate("/layout");
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
+
+  /**
+   * Email change event
+   * @param {*} event
+   */
+  const emailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  /**
+   * password change event
+   * @param {*} event
+   */
+  const passwordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  return (
+    <div className="LoginSpace">
+      <form onSubmit={signIn} className="authForm">
+        <fieldset>
+          <legend>Sign in</legend>
+          <div>
+            <label>Email</label>
+            <input type="email" name={email} onChange={emailChange}></input>
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              name={password}
+              onChange={passwordChange}
+            ></input>
+          </div>
+          <input type="submit" value="Sign in" className="standard"></input>
+          <a href="/register">Register</a>
+        </fieldset>
+      </form>
+    </div>
+  );
 }

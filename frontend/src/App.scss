@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 .App {
   text-align: center;
 }
@@ -56,5 +58,23 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+input {
+  border-radius: 3px;
+}
+
+input[type="button"], input[type="submit"], button {
+  &.standard {
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: #ccc;
+    background-color: rgb(106, 106, 236);
+    color: #faf7f7;
+    &:focus, &:hover {
+      opacity: 0.5;
+    }
   }
 }

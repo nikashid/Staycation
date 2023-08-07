@@ -12,9 +12,6 @@ services:
    container_name: StaycationBackend
   mongo:
    image: mongo
-   # environment:
-   #    MONGO_INITDB_ROOT_USERNAME: root
-   #    MONGO_INITDB_ROOT_PASSWORD: example
    container_name: StaycationDB
    volumes: 
       - ./mongo-data:/data/db
